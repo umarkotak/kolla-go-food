@@ -1,17 +1,17 @@
 # README
 
-##Ruby on Rails, introduction##
+## Ruby on Rails, introduction ##
 
-###Reuirements :###
+### Reuirements : ###
 1. RoR Framework   -> `< gem install rails >`
 2. ExecJS file     -> `< gem install execjs >`
 3. The Ruby Racer  -> `< gem install therubyracer >`
 
-###Rails config :###
+### Rails config : ###
 1. gemfile, uncomment on line 20, to use therubyracer
 2. type `< bundle >` on terminal
 
-###Rails basic command :###
+### Rails basic command : ###
 1. rails new 'file_name' -> generate new apps with rails sekeletal
 2. rails generate -> use to generate sekeletor each file
 3. rails generate controller Home hello -> will generate Home controller with hello action and view
@@ -27,7 +27,7 @@
 
 11. exit -> to exit rails command line
 
-###Rails Notes :###
+### Rails Notes : ###
 1. <% %>  -> to make un printed code at html page (view)
 2. <%= %> -> to make printed code at html page (view)
 
