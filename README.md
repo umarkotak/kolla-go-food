@@ -2,7 +2,7 @@
 
 ## Ruby on Rails, introduction ##
 
-### Reuirements : ###
+### Requirements : ###
 1. RoR Framework   -> `< gem install rails >`
 2. ExecJS file     -> `< gem install execjs >`
 3. The Ruby Racer  -> `< gem install therubyracer >`
@@ -13,7 +13,7 @@
 
 ### Rails basic command : ###
 1. rails new 'file_name' -> generate new apps with rails sekeletal
-2. rails generate -> use to generate sekeletor each file
+2. rails generate -> use to generate sekeleton each file
 3. rails generate controller Home hello -> will generate Home controller with hello action and view
 4. rails g model user -> will generate User model
 
@@ -27,7 +27,7 @@
 
 11. exit -> to exit rails command line
 
-### Rails Notes : ###
+### Rails Notes 1 : ###
 1. <% %>  -> to make un printed code at html page (view)
 2. <%= %> -> to make printed code at html page (view)
 
@@ -35,3 +35,18 @@
 4. User.find(1) -> will return the first data at User db
 5. User.where(username: 'umar') -> will return data that have value 'umar'
 6. User.create (username: 'umarkotak', full_name: 'm umar') -> to inser data into database
+7. database in rails will return as an special object that containing array data. and that array is an array of object that can also converted into hash
+8. make sure the naming is right, plural and singular verbs
+
+### Rails Notes 2 : ###
+1. rails new dummy -> creating new RoR web app called dummy
+2. edit gemfile as necessary to make the apps run
+3. rails g controller Home hello
+4. rails g model user
+5. rails db:create
+6. configure the migrate file at db/migrate/user_file.rb
+7. to make new action calle 'goodbye'
+8. create inside controller home def 'goodbye'
+9. create the view file for 'goodbye' in view/home/
+10. configure the routes file in config/routes.rb
+11. add get 'home/goodbye'
