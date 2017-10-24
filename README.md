@@ -50,3 +50,9 @@
 9. create the view file for 'goodbye' in view/home/
 10. configure the routes file in config/routes.rb
 11. add get 'home/goodbye'
+
+### Iteration 1 : Simplified GoFood App ###
+1. daftar makanan
+2. masukin ke cart, liat yang lain,
+3. bayar
+4. order history
