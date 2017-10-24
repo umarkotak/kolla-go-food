@@ -52,6 +52,14 @@
 10. configure the routes file in config/routes.rb
 11. add get 'home/goodbye'
 
+### Rails Notes 3 : ###
+selasa 24/10/2017
+1. rails generate rspec:install
+2. bundle install after add gem in gemfile
+3. rails db:seed -> default value for database
+4. rails g scaffold Buyer name:string email:string phone:string address:text
+5. using branch while developing new features
+
 ### Iteration 1 : Simplified GoFood App ###
 1. daftar makanan
 2. masukin ke cart, liat yang lain,
