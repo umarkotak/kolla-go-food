@@ -16,6 +16,7 @@
 2. rails generate -> use to generate sekeleton each file
 3. rails generate controller Home hello -> will generate Home controller with hello action and view
 4. rails g model user -> will generate User model
+5. git commit -m "7th commit, add model view controller Food"
 
 5. rails server -p 3000 -> will start the apps on port 3000
 6. ctrl + c -> to strop current service
