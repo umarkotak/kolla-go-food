@@ -28,6 +28,8 @@
 
 11. exit -> to exit rails command line
 
+12. rails g scaffold Buyer email:string name:string phone:string 
+
 ### Rails Notes 1 : ###
 1. <% %>  -> to make un printed code at html page (view)
 2. <%= %> -> to make printed code at html page (view)
