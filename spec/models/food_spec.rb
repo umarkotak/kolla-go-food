@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Food do
+  
   it "is valid with a name and description" do
     food = Food.new(
       name: 'Nasi Uduk',
@@ -47,6 +48,8 @@ describe Food do
     expect(food2.errors[:name]).to include('has already been taken')
   end
 
+  # without dry concept
+
   it "returns a sorted array of results that match" do
     food1 = Food.create(
       name: 'Nasi Uduk',
@@ -89,6 +92,42 @@ describe Food do
     )
 
     expect(Food.by_letter('N')).not_to eq([food2])
+  end
+
+  # with dry concept
+
+  describe "filter name by letter" do
+    before :each do
+      @food1 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Nasi enak banget',
+        price: 5000
+      )
+
+      @food2 = Food.create(
+        name: 'Kerak Telor',
+        description: 'Telor di keraking',
+        price: 15000
+      )
+
+      @food3 = Food.create(
+        name: 'Nasi Sambal',
+        description: 'Nasi enak ajah',
+        price: 5500
+      )
+    end
+
+    context "with matching letter" do
+      it "returns a sorted array of result that match" do
+        expect(Food.by_letter('N')).to eq([@food3, @food1])
+      end
+    end
+
+    context "with non-matching letter" do
+      it "returns a sorted array of result that match" do
+        expect(Food.by_letter('N')).not_to eq([@food2])
+      end
+    end
   end
 
 end

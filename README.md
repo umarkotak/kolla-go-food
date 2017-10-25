@@ -71,3 +71,7 @@ selasa 24/10/2017
 6. model buyer kasih validasi semua field gaboleh kosong
 7. email harus uniq, dan dengan format email
 8. phone must contain only number max 12 digits
+
+### Iteration 2 : ###
+1. rspec --format documentation
+2. 
