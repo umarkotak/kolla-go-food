@@ -130,4 +130,60 @@ describe Food do
     end
   end
 
+  it "is invalid when input include non numeric character" do
+    food = Food.new(
+      name: 'Nasi Uduk',
+      description: 'Nasik enak sekali',
+      price: '5000a'
+    )
+    food.valid?
+    expect(food.errors[:price]).to include('is not a number')
+  end
+
+  it "is invalid when price < 0.01" do
+    food = Food.new(
+      name: 'Nasi Uduk',
+      description: 'Nasik enak sekali',
+      price: -5
+    )
+    food.valid?
+    val = 0.01
+    expect(food.errors[:price]).to include("must be greater than or equal to #{val}")
+  end
+
+  it "is invalid when image format other than .gif .jpg .png" do
+    food = Food.new(
+      name: 'Nasi Uduk',
+      description: 'Nasik enak sekali',
+      price: -5,
+      image_url: 'ngakak.lol'
+    )
+    food.valid?
+    expect(food.errors[:image_url]).to include('must be a URL for GIF, JPG or PNG image')
+  end
+
+  describe "dryer structur for precense" do
+    before :each do
+      @food = Food.new(
+        name: nil,
+        description: nil, 
+        price: 5000
+      )
+    end
+
+    context "with name precense" do
+      it "is invalid without a name" do
+        @food.valid?
+        expect(@food.errors[:name]).to include("can't be blank")
+      end
+    end
+
+    context "with description precense" do
+      it "is invalid without a description" do
+        @food.valid?
+        expect(@food.errors[:description]).to include("can't be blank")
+      end
+    end
+  end
+
 end
