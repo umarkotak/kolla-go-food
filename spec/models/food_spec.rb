@@ -48,6 +48,8 @@ describe Food do
     expect(food2.errors[:name]).to include('has already been taken')
   end
 
+# ====================================================
+
   # without dry concept
 
   it "returns a sorted array of results that match" do
@@ -91,6 +93,7 @@ describe Food do
       price: 5500
     )
 
+    expect(Food.by_letter('N')).to eq([food3, food1])
     expect(Food.by_letter('N')).not_to eq([food2])
   end
 
@@ -129,6 +132,8 @@ describe Food do
       end
     end
   end
+
+# ====================================================
 
   it "is invalid when input include non numeric character" do
     food = Food.new(
@@ -185,6 +190,8 @@ describe Food do
       end
     end
   end
+
+# ====================================================
   
   it "has a valid factory" do
     expect(FactoryGirl.build(:food)).to be_valid
@@ -210,6 +217,8 @@ describe Food do
     expect(food2.errors[:name]).to include('has already been taken')
   end
 
+# ====================================================
+
   it "has a valid factory" do
     expect(build(:food)).to be_valid
   end
@@ -232,6 +241,35 @@ describe Food do
     
     food2.valid?
     expect(food2.errors[:name]).to include('has already been taken')
+  end
+
+# ====================================================
+
+  it "is invalid when input include non numeric character" do
+    food = build(:food, price: '5abc')
+    food.valid?
+    expect(food.errors[:price]).to include('is not a number')
+  end
+
+  it "is invalid when price < 0.01" do
+    food = build(:food, price: -500)
+    food.valid?
+    val = 0.01
+    expect(food.errors[:price]).to include("must be greater than or equal to #{val}")
+  end
+
+  it "is invalid when image format other than .gif .jpg .png" do
+    food = build(:food, image_url: 'ngakak.lol')
+    food.valid?
+    expect(food.errors[:image_url]).to include('must be a URL for GIF, JPG or PNG image')
+  end
+
+  it "returns a sorted array of results that match" do
+    food1 = create(:food, name: 'Nasi Uduk')
+    food2 = create(:food, name: 'Kerak Telor')
+    food3 = create(:food, name: 'Nasi Sambal')
+    expect(Food.by_letter('N')).to eq([food3, food1])
+    expect(Food.by_letter('N')).not_to eq([food2])
   end
 
 end
