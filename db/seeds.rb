@@ -37,3 +37,38 @@ Food.create!(
   image_url: 'Image3.jpg',
   price: 20000
 )
+
+Buyer.create!(
+  name: 'M Umar Ramadhana',
+  email: 'umarkotak@yahoo.co.id',
+  phone: '085217251690',
+  address: 'taman raya citayam blok f1 no 8'
+)
+
+Buyer.create!(
+  name: 'Mad Dog',
+  email: 'madmad@yahoo.co.id',
+  phone: '085217251000',
+  address: 'puncak gunung everest no 1'
+)
+
+Buyer.create!(
+  name: 'Ming Xuanchiang',
+  email: 'mingmew@yahoo.co.id',
+  phone: '085217251001',
+  address: 'pertengahan tembok china no 15'
+)
+
+Buyer.create!(
+  name: 'Luna Freya',
+  email: 'lalune99@yahoo.co.id',
+  phone: '085217251002',
+  address: 'unknown'
+)
+
+Buyer.create!(
+  name: 'Sylvester Stalone',
+  email: 'sylstal@yahoo.co.id',
+  phone: '085217251003',
+  address: 'Hoollywoow'
+)

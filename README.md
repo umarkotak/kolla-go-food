@@ -28,6 +28,8 @@
 
 11. exit -> to exit rails command line
 
+12. rails g scaffold Buyer email:string name:string phone:string 
+
 ### Rails Notes 1 : ###
 1. <% %>  -> to make un printed code at html page (view)
 2. <%= %> -> to make printed code at html page (view)
@@ -69,3 +71,7 @@ selasa 24/10/2017
 6. model buyer kasih validasi semua field gaboleh kosong
 7. email harus uniq, dan dengan format email
 8. phone must contain only number max 12 digits
+
+### Iteration 2 : ###
+1. rspec --format documentation
+2. 
