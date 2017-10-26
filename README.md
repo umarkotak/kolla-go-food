@@ -75,3 +75,6 @@ selasa 24/10/2017
 ### Iteration 2 : ###
 1. rspec --format documentation
 2. 
+
+### Iteration 3 : ###
+1. rails generate controller Store index
