@@ -78,3 +78,6 @@ selasa 24/10/2017
 
 ### Iteration 3 : ###
 1. rails generate controller Store index
+2. rails g scaffold Cart
+3. rails db:migrateS
+4. rails generate migration CreateLineItem food:references cart:belongs_to
