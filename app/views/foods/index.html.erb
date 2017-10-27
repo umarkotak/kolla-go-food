@@ -4,6 +4,8 @@
 
 <table>
     <% @foods.each do |food| %>
+
+
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
         <td>
           <%= image_tag(food.image_url, class: 'list_image') %>
@@ -19,6 +21,19 @@
           <%= link_to 'Edit', edit_food_path(food) %>
           <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
+
+        <td>
+          <div class="entry">
+
+            <div class="price_line">
+              <span class="price">
+                <%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %>
+                <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
+              </span>
+            </div>
+          </div>
+        </td>
+
       </tr>
     <% end %>
 </table>
