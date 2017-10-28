@@ -36,4 +36,6 @@ RSpec.describe Cart, type: :model do
     expect(cart.add_food(food).quantity).to eq(2)
   end
 
+  it "will return the sum of the total price of its LineItem's"
+
 end
