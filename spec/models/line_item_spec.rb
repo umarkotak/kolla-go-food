@@ -5,7 +5,10 @@ describe LineItem do
     expect(build(:line_item)).to be_valid
   end
 
-  it "will return the calculation of LineItem's quantity times its Product's price"
+  it "will return the calculation of LineItem's quantity times its Product's price" do
+    line_item = build(:line_item)
+    expect(line_item.total_price).to eq()
+  end
   
   
 end
