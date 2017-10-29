@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'category/index'
+
   resources :carts
   root 'store#index', as: 'store_index'
 

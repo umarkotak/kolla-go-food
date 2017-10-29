@@ -12,6 +12,10 @@ class Food < ApplicationRecord
     where("name LIKE ?", "#{letter}%").order(:name)
   end
 
+  def self.by_category(category)
+    where("category LIKE ?", "#{category}").order(:name)
+  end
+
   has_many :line_items
 
   before_destroy :ensure_not_referenced_by_any_line_item
