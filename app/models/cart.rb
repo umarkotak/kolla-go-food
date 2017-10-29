@@ -12,5 +12,22 @@ class Cart < ApplicationRecord
     current_item
   end
 
-  
+
+  @price = 0
+
+  def self.price
+    @price
+  end
+
+  def self.price=(str)
+    @price = str.to_i
+  end
+
+  def self.total_price(items)
+
+    @price += items
+
+    @price
+  end
+
 end

@@ -14,6 +14,7 @@ Food.create!(
   rasanya enak gurih gurih nyoy
   </p>},
   image_url: 'Image1.jpg',
+  category: 'Mahal',
   price: 9000
 )
 
@@ -24,6 +25,7 @@ Food.create!(
   rasanya enak asin asin gitu
   </p>},
   image_url: 'Image2.jpg',
+  category: 'Mahal',
   price: 15000
 )
 
@@ -35,6 +37,7 @@ Food.create!(
   pedes pedes manis enak
   </p>},
   image_url: 'Image3.jpg',
+  category: 'Murah',
   price: 20000
 )
 
