@@ -25,6 +25,10 @@
     <%= form.label :category %>
     <%# collection_select( :category, ['Mahal', 'Sedang', 'Murah']) %>
     <%# collection_select(:post, :category, ['Mahal', 'Sedang', 'Murah'], :id, prompt: true) %>
+    <%# form.text_area :category, id: :food_category %>
+
+    <%= select(:food, :category, options_for_select([['Mahal', 'Mahal'], ['Murah', 'Murah'],['Sedang','Sedang']]), id: :food_category  ) %>
+    <%=  %>
   </div>
 
   <div class="field">

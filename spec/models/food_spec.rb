@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe Food do
   
-  # it "is valid with a name and description" do
-  #   food = Food.new(
-  #     name: 'Nasi Uduk',
-  #     description: 'Betawi style steamed rice cooked in coconut milk.',
-  #     price: 5000
-  #   )
-  #   expect(food).to be_valid
-  # end
+  it "is valid with a name and description" do
+    food = Food.new(
+      name: 'Nasi Uduk',
+      description: 'Betawi style steamed rice cooked in coconut milk.',
+      price: 5000
+    )
+    expect(food).to be_valid
+  end
 
   # it "is invalid without a name" do
   #   food = Food.new(

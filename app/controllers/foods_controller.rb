@@ -5,8 +5,8 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def index
     # @foods = Food.all
-    @foods = Food.by_letter(params[:letter])
-    # @foods = params[:letter].nil? ? Food.all : Food.by_letter(params[:letter])
+    # @foods = Food.by_letter(params[:letter])
+    @foods = params[:letter].nil? ? Food.all : Food.by_letter(params[:letter])
   end
 
   # GET /foods/1
@@ -71,6 +71,6 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :description, :image_url, :price)
+      params.require(:food).permit(:name, :description, :image_url, :price, :category)
     end
 end
