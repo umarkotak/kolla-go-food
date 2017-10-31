@@ -12,7 +12,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @food.category.name %>
+  <%= @food.category.try(:name) %>
 </p>
 
 <p>
