@@ -3,9 +3,9 @@ class CategoriesController < ApplicationController
 
 
   def index
-    # @categorys = Category.all
+    @categories = Category.all
     # @categorys = Category.by_letter(params[:letter])
-    @categories = params[:category].nil? ? Category.all : Category.by_category(params[:category])
+    # @categories = params[:category].nil? ? Category.all : Category.by_category(params[:category])
   end
 
 
@@ -64,12 +64,12 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.all
+      @category = Category.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :description, :image_url, :price, :category)
+      params.require(:category).permit(:name)
     end
 
 end

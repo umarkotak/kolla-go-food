@@ -32,7 +32,6 @@ RSpec.describe CategoriesController, type: :controller do
       category = create(:category)
       food1 = create(:food, category: category)
       food2 = create(:food, category: category)
-
       get :show, params: { id: category }
       expect(assigns(:category).foods).to match_array([food1, food2])
     end
