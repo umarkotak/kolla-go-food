@@ -4,10 +4,6 @@ class Category < ApplicationRecord
 
   before_destroy :ensure_not_referenced_by_any_food
 
-  def self.by_category(category)
-    where("category LIKE ?", "#{category}").order(:name)
-  end
-
   private
     def ensure_not_referenced_by_any_food
       unless foods.empty?
@@ -15,5 +11,4 @@ class Category < ApplicationRecord
         throw :abort
       end
     end
-
 end

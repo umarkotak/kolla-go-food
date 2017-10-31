@@ -1,15 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  it "is a valid factory" do
+  it "has a valid factory" do
     expect(build(:category)).to be_valid
   end
 
   it "is valid with a name" do
-    category = Category.new(
-      name: 'Mahal'
-    )
-    expect(category).to be_valid
+    expect(build(:category)).to be_valid
   end
 
   it "is invalid without a name" do
@@ -19,8 +16,9 @@ RSpec.describe Category, type: :model do
   end
 
   it "is invalid with a duplicate name" do
-    category1 = create(:category, name: "Mahal")
-    category2 = build(:category, name: "Mahal")
+    category1 = create(:category, name: "Dessert")
+    category2 = build(:category, name: "Dessert")
+
     category2.valid?
     expect(category2.errors[:name]).to include("has already been taken")
   end

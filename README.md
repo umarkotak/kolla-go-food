@@ -86,3 +86,9 @@ selasa 24/10/2017
 1. Drink sama kaya food
 2. Only CRUD
 3. Connect dari category
+
+### Iteration 5 : ###
+1. buat model : rails generate model Drink
+2. buat controller : rails generate controller drinks
+3. buat db:migrate
+4. buat routes

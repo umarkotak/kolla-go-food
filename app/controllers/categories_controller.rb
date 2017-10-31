@@ -1,28 +1,29 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-
+  # GET /categories
+  # GET /categories.json
   def index
     @categories = Category.all
-    # @categorys = Category.by_letter(params[:letter])
-    # @categories = params[:category].nil? ? Category.all : Category.by_category(params[:category])
   end
 
-
+  # GET /categories/1
+  # GET /categories/1.json
   def show
+    # @foods = Food.by_category(@category.id)
   end
 
-  # GET /categorys/new
+  # GET /categories/new
   def new
     @category = Category.new
   end
 
-  # GET /categorys/1/edit
+  # GET /categories/1/edit
   def edit
   end
 
-  # POST /categorys
-  # POST /categorys.json
+  # POST /categories
+  # POST /categories.json
   def create
     @category = Category.new(category_params)
 
@@ -37,8 +38,8 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /categorys/1
-  # PATCH/PUT /categorys/1.json
+  # PATCH/PUT /categories/1
+  # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -51,8 +52,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categorys/1
-  # DELETE /categorys/1.json
   def destroy
     @category.destroy
     respond_to do |format|
@@ -71,5 +70,4 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
-
 end
