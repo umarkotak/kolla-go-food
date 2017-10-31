@@ -23,11 +23,18 @@
 
   <div class="field">
     <%= form.label :category %>
+    <% opt = [] %>
     <%# collection_select( :category, ['Mahal', 'Sedang', 'Murah']) %>
     <%# collection_select(:post, :category, ['Mahal', 'Sedang', 'Murah'], :id, prompt: true) %>
     <%# form.text_area :category, id: :food_category %>
 
-    <% opt = [['Mahal', 'Mahal'], ['Murah', 'Murah'],['Sedang','Sedang']] %>
+    <%# opt = [['Mahal', 'Mahal'], ['Murah', 'Murah'],['Sedang','Sedang']] %>
+    <% @categories_opt.each do |category| %>
+      <% dat = [] %>
+      <% dat << category.name%>
+      <% dat << category.name %>
+      <% opt << dat %>
+    <% end %>
     <%= select(:food, :category, options_for_select(opt), id: :food_category  ) %>
   </div>
 
