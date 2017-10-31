@@ -1,5 +1,9 @@
 class CartsController < ApplicationController
+  include CurrentCart
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+
+  
+  # before_action :set_cart
 
   # GET /carts
   # GET /carts.json
@@ -54,9 +58,13 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    if session[:cart_id] == @cart.id
+      @cart.destroy
+      session[:cart_id] = nil    
+    end
+
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to store_index_path, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

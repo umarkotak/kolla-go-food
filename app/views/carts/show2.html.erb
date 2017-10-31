@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Your Cart</h2>
+
+<table>
+  <%# total_price = 0.0 %>
+  <% @cart.line_items.each do |item| %>
+    <tr>
+      <td><%= item.quantity %> ×</td>
+      <td><%= item.food.name %></td>
+      <td class="item_price"><%= item.quantity %> * <%= item.food.price %> = <%= number_to_currency(items_price = item.total_price, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+      <!-- <td class="item_price"><%# number_to_currency(item.quantity * item.food.price, unit: "Rp ", delimiter: ".", separator: ",") %></td> -->
+    </tr>
+    <%# total_price += (item.quantity * item.food.price) %>
+  <% end %>
+  <tr class="total_line">
+    <td colspan="2">Total</td>
+    <td class="total_cell"><%= number_to_currency(@cart.total_price, unit: "Rp ", delimiter: ".", separator: ",") %></td>
+  </tr>
+  <tr>
+    <td><%= link_to 'Destroy', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    
+  </tr>
+
+</table>

@@ -54,4 +54,22 @@ RSpec.describe Cart, type: :model do
     expect(cart.total_price).to eq(17000)
   end
 
+  # it "can remove line_item when clicked" do
+  #   cart = create(:cart)
+  #   food1 = create(:food, name: "Nasi Uduk", price: 5000)
+  #   food2 = create(:food, name: "Nasi Kuning", price: 7000)
+  #   line_item1 = create(:line_item, food: food1, quantity: 2, cart: cart)
+  #   line_item2 = create(:line_item, food: food2, quantity: 1, cart: cart)
+  #   expect(cart.remove(line_item1)).to change(Cart, :count).by(-1)
+  # end
+
+  # it "can empty cart's item" do
+  #   cart = create(:cart)
+  #   food1 = create(:food, name: "Nasi Uduk", price: 5000)
+  #   food2 = create(:food, name: "Nasi Kuning", price: 7000)
+  #   line_item1 = create(:line_item, food: food1, quantity: 2, cart: cart)
+  #   line_item2 = create(:line_item, food: food2, quantity: 1, cart: cart)
+  #   expect(cart.empty).to change(Cart, :count).by(-2)
+  # end
+
 end

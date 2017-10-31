@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   
   resources :categories
   resources :drinks
+  # get '/drinks' => 'drinks#index'
+  # get '/drinks/:id' => 'drinks#show'
+  # get '/drinks/new' => 'drinks#new'
+  # post '/drinks' => 'drinks#create'
+  # get '/drinks/:id/edit' => 'drinks#edit'
+  # patch '/drinks/:id' => 'drinks#update'
+  # delete 'drinks/:id' => 'drinks#destroy'
+  # delete 'drinks/:id/hapus' => 'drinks#hapus'
 
   resources :carts
   root 'store#index', as: 'store_index'
