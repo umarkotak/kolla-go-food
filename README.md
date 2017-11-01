@@ -99,3 +99,4 @@ selasa 24/10/2017
 3. @foods = Food.all?
         ActionCable.server.broadcast 'foods', html: render_to_string('store/index', layout: false)
 4. setiap ada broadcast akan diterima channel, kemudian channel akan mencari list subscribe dan mengupdate smua yang terdaftar
+5. rails g model Order name address:text email payment_type:integer
