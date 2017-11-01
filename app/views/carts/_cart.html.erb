@@ -6,7 +6,7 @@
     <td class="total_cell"><%= number_to_currency(@cart.total_price, unit: "Rp ", delimiter: ".", separator: ",") %></td>
   </tr>
   <tr>
-    <td colspan="2"><%= link_to 'Destroy', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td colspan="3"><%= link_to 'Destroy', @cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     
   </tr>
 </table>

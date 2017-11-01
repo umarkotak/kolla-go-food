@@ -5,11 +5,11 @@
   <div class='entry'>
     <%= image_tag(food.image_url) %>
     <h3><%= food.name %></h3>
-    <%= sanitize(food.description) %>
+    <p><%= sanitize(food.description) %></p>
     <div class='price_line'>
       <span class="price">
         <%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %>
-        <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
+        <%= button_to 'Add to Cart', line_items_path(food_id: food), remote: true %>
       </span>
     </div>
     <div class="tags_line">

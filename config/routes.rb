@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :categories
   resources :drinks
+  resources :orders
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   resources :carts
   root 'store#index', as: 'store_index'
 
-  get 'store/index'
+  # get 'store/index'
 
   resources :buyers
   resources :foods
