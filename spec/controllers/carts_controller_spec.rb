@@ -138,4 +138,47 @@ RSpec.describe CartsController, type: :controller do
     end
   end
 
+  describe "EMPTY_CART #empty" do
+    it "should remove only user's own cart"
+
+    it "should remove the cart from user's session"
+
+    it "can redirect to store index"
+  end
+
+  describe "DELETE #destroy" do
+    before(:each) do
+      @cart = create(:cart)
+      session[:cart_id] = @cart.id
+    end
+
+    context "with valid cart_id" do
+      it "destroys the requested cart" do
+        expect{
+          delete :destroy, params: {id: @cart.id}, session: valid_session
+        }.to change(Cart, :count).by(-1)
+      end
+
+      it "removes the cart from user's session"do
+        delete :destroy, params: {id: @cart.id}, session: valid_session
+        expect(session[:cart_id]).to eq(nil)
+      end
+
+      it "redirect to the store home page" do
+        delete :destroy, params: {id: @cart.id}, session: valid_session
+        expect(response).to redirect_to(store_index_path)
+      end
+    end
+
+    context "with invalid cart_id" do
+      it "does not destroy the requested cart (different with session)" do
+        other_cart = create(:cart)
+        expect{
+          delete :destroy, params: {id: other_cart.id}, session: valid_session
+        }.to change(Cart, :count).by(0)
+      end
+    end
+
+  end
+
 end

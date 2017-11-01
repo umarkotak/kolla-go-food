@@ -3,6 +3,7 @@ FactoryGirl.define do
     name {Faker::Food::dish}
     description {Faker::Food::ingredient}
     price {Faker::Number::number(3)}
+    association :category
 
     # name "Nasi Uduk"
     # description "Nasi paling enak aja"

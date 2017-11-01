@@ -1,6 +1,9 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
+  include CurrentCart
+  before_action :set_cart
+
   # GET /foods
   # GET /foods.json
   def index
@@ -12,15 +15,18 @@ class FoodsController < ApplicationController
   # GET /foods/1
   # GET /foods/1.json
   def show
+    @categories_opt = Category.all
   end
 
   # GET /foods/new
   def new
     @food = Food.new
+    @categories_opt = Category.all
   end
 
   # GET /foods/1/edit
   def edit
+    @categories_opt = Category.all
   end
 
   # POST /foods
@@ -71,6 +77,6 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :description, :image_url, :price)
+      params.require(:food).permit(:name, :description, :image_url, :price, :category, :category_id)
     end
 end

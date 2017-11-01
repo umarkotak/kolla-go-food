@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong>Category:</strong>
+  <%= @food.category.try(:name) %>
+</p>
+
+<p>
   <strong>Image url:</strong>
   <%= @food.image_url %>
 </p>

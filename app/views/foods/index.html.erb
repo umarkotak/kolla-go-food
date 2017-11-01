@@ -3,39 +3,27 @@
 <h1>Foods</h1>
 
 <table>
-    <% @foods.each do |food| %>
-
-
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td>
-          <%= image_tag(food.image_url, class: 'list_image') %>
-        </td>
-        <td class="list_description">
-          <dl>
-            <dt><%= food.name %></dt>
-            <dd><%= truncate(strip_tags(food.description), length: 80) %></dd >
-          </dl>
-        </td>
-        <td class="list_action">
-          <%= link_to 'Show', food %>
-          <%= link_to 'Edit', edit_food_path(food) %>
-          <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-
-        <td>
-          <div class="entry">
-
-            <div class="price_line">
-              <span class="price">
-                <%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %>
-                <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
-              </span>
-            </div>
-          </div>
-        </td>
-
-      </tr>
-    <% end %>
+  <% @foods.each do |food| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td>
+        <%= image_tag(food.image_url, class: 'list_image') %>
+      </td>
+      <td class="list_description">
+        <dl>
+          <dt><%= food.name %></dt>
+          <dd><%= truncate(strip_tags(food.description), length:80) %></dd>
+          <dd><%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %></dd>
+          <dd><span class="tags"><%= food.category.try(:name) %></span></dd>
+        </dl>
+      </td>
+      <td class="list_actions">
+        <%= link_to 'Show', food %><br>
+        <%= link_to 'Edit', edit_food_path(food) %><br>
+        <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+        <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <br>

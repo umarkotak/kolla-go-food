@@ -10,15 +10,21 @@
 
   <body class="<%= controller.controller_name %>">
     <div id="banner">
-      <%= image_tag 'Image2.jpg', alt: "Simplified Go Food" %>
+      <%= image_tag 'logo.jpg', alt: "Simplified Go Food" %>
       <span class="title"><%= @page_title %></span>
     </div>
     <div id="columns">
       <div id="side">
+        <div id="cart">
+          <%= render @cart %>
+        </div>
+
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="#">My Account</a></li>
-          <li><a href="foods">My Orders</a></li>
+          <li><a href="/foods">My Orders</a></li>
+          <li><a href="/categories">Category</a></li>
+          <li><a href="/carts">Carts</a></li>
         </ul>
       </div>
       <div id="main">
