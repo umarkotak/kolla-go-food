@@ -9,12 +9,13 @@ describe OrdersController do
     it "populates an array of all ordes" do
       order1 = create(:order, name:'Buyer 1')
       order2 = create(:order, name:'Buyer 2')
-      expect(assigns(:order)).to match_array([order1, order2])
+      get :index
+      expect(assigns(:orders)).to match_array([order1, order2])
     end
 
     it "renders the :index template" do
       get :index
-      expect(response).to render_template: index
+      expect(response).to render_template :index
     end
   end
 
@@ -35,12 +36,12 @@ describe OrdersController do
   describe "GET #new" do
     context "with non-empty cart" do
       before :each do
-        @cart = cart(:cart)
+        @cart = create(:cart)
         session[cart_id] = @cart.id
         @line_item = create(:line_item, cart: @cart)
       end
 
-      it " assigns a new Order to @orde" do
+      it " assigns a new Order to @order" do
         get :new
         expect(assigns(:order)).to be_a_new(Order)
       end
