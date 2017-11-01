@@ -1,8 +1,8 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
-  include CurrentCart
-  before_action :set_cart
+  # include CurrentCart
+  # before_action :set_cart
 
   # GET /foods
   # GET /foods.json
