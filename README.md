@@ -101,3 +101,19 @@ selasa 24/10/2017
 4. setiap ada broadcast akan diterima channel, kemudian channel akan mencari list subscribe dan mengupdate smua yang terdaftar
 5. rails g model Order name address:text email payment_type:integer
 6. rails generate migration AddOrderIdToLineItem order:references
+
+### Misc ###
+1) To UNDO local file changes but NOT REMOVE your last commit, then use
+
+git reset --hard
+2) To UNDO local file changes AND REMOVE your last commit, then use
+
+git reset --hard HEAD^
+or
+git reset --hard HEAD~
+3) To KEEP local file changes and REMOVE ONLY your last commit, then use
+
+git reset --soft HEAD^
+or
+git reset --soft HEAD~
+Use git status and git log frequently to observe your current state.
