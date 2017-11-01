@@ -67,7 +67,7 @@ describe OrdersController do
   describe "GET #edit" do
     it "assigns the requested order to @order" do
       order = create(:order)
-      get :edit, params { id: order }
+      get :edit, params: { id: order }
       expect(assigns(:order)).to eq order
     end
 
@@ -160,7 +160,7 @@ describe OrdersController do
 
     it "deletes the order from the database" do
       expect{
-        :destroy, params: { id: @order }
+        delete :destroy, params: { id: @order }
         }.to change(Order, :count).by(-1)
     end
 
