@@ -37,7 +37,7 @@ describe OrdersController do
     context "with non-empty cart" do
       before :each do
         @cart = create(:cart)
-        session[cart_id] = @cart.id
+        session[:cart_id] = @cart.id
         @line_item = create(:line_item, cart: @cart)
       end
 
@@ -54,13 +54,13 @@ describe OrdersController do
 
     context "with empty cart" do
       before :each do
-        @cart = cart(:cart)
-        session[cart_id] = @cart.id        
+        @cart = create(:cart)
+        session[:cart_id] = @cart.id        
       end
 
       it "redirects to the store index page" do
         get :new
-        expect(response).to store_index_path
+        expect(response).to redirect_to(store_index_path)
       end
     end
   end

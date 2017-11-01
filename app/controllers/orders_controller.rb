@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :set_order, :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:new]
+  before_action :check_cart, only: [:new]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
     # @orders = Order.all
@@ -10,12 +12,19 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    # respond_to()
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def check_cart
+      if @cart.line_items.empty?
+        redirect_to store_index_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
