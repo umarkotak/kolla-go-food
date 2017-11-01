@@ -87,7 +87,7 @@ describe OrdersController do
         }.to change(Order, :count).by(1)
       end
 
-      it "destroy session's cart" do
+      it "destroy session's cart" do        
         expect{
           post :create, params: { order: attributes_for(:order) }
         }.to change(Cart, :count).by(-1)
