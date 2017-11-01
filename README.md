@@ -94,3 +94,8 @@ selasa 24/10/2017
 4. buat routes
 
 ### Action Cable ###
+1. rails generate channel foods
+2. stream from foods
+3. @foods = Food.all?
+        ActionCable.server.broadcast 'foods', html: render_to_string('store/index', layout: false)
+4. setiap ada broadcast akan diterima channel, kemudian channel akan mencari list subscribe dan mengupdate smua yang terdaftar
