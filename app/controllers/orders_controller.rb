@@ -5,14 +5,25 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @orders = Order.all
+    @orders = Order.all
     # @orders = Order.by_letter(params[:letter])
-    @orders = params[:letter].nil? ? Order.all : Order.by_letter(params[:letter])
+    # @orders = params[:letter].nil? ? Order.all : Order.by_letter(params[:letter])
   end
 
   def new
     @order = Order.new
     # respond_to()
+  end
+
+  # GET /orders/1
+  # GET /orders/1.json
+  def show
+    
+  end
+
+  # GET /orders/1/edit
+  def edit    
+
   end
 
   # POST /orders
@@ -22,8 +33,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to store_index_path, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: store_index_path }
 
         # Cart.destroy(session[:cart_id])
       else

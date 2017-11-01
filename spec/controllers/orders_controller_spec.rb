@@ -68,7 +68,7 @@ describe OrdersController do
   describe "GET #edit" do
     it "assigns the requested order to @order" do
       order = create(:order)
-      get :edit, params: { id: order }
+      get :edit, params: {id: order}
       expect(assigns(:order)).to eq order
     end
 
@@ -108,7 +108,7 @@ describe OrdersController do
       it "does not save the new order in the database" do
         expect{
           post :create, params: { order: attributes_for(:invalid_order) }
-        }.to change(Order, :count)
+        }.not_to change(Order, :count)
       end
 
       it "re render the :new template" do
@@ -125,18 +125,18 @@ describe OrdersController do
 
     context "with valid attributes" do
       it "locates the requested @order" do
-        patch :create, params:{ id: @order, order: attributes_for(:order) }
+        patch :update, params:{ id: @order, order: attributes_for(:order) }
         expect(assigns(:order)).to eq @order
       end
 
       it "changes @order's attributes" do
-        post :create, params: { id: @order, order: attributes_for(:order, name: 'umar') }
+        post :update, params: { id: @order, order: attributes_for(:order, name: 'umar') }
         @order.reload
-        expect(assigns(@order.name)).to eq('umar')
+        expect(@order.name).to eq('umar')
       end
 
       it "redirects to the order" do
-        post :create, params: { id: @order, order: attributes_for(:order) }
+        post :update, params: { id: @order, order: attributes_for(:order) }
         expect(response).to redirect_to @order
       end
     end
@@ -156,7 +156,7 @@ describe OrdersController do
 
   describe "DELETE #destroy" do
     before :each do
-      order = create(:order)
+      @order = create(:order)
     end
 
     it "deletes the order from the database" do
