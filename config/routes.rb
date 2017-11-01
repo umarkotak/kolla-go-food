@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   resources :categories
   resources :drinks
+  resources :orders
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
