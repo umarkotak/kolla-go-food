@@ -2,25 +2,32 @@
 
 <h1>Foods</h1>
 
-<table>
-  <% @foods.each do |food| %>
+<%# @orders.to_json %>
+<%# @orders[1].to_json %>
+<%# @orders[1].line_items.to_json %>
+
+<table border=1>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>E Mail</th>
+    <th>Payment Type</th>
+    <th>Total</th>
+    <th>Action</th>
+  </tr>
+  <% @orders.each do |order| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td><%= order.id %></td>
+      <td><%= order.name %></td>
+      <td><%= order.address %></td>
+      <td><%= order.email %></td>
+      <td><%= order.payment_type %></td>
+      <td><%= order.total_price %></td>
       <td>
-        <%= image_tag(food.image_url, class: 'list_image') %>
-      </td>
-      <td class="list_description">
-        <dl>
-          <dt><%= food.name %></dt>
-          <dd><%= truncate(strip_tags(food.description), length:80) %></dd>
-          <dd><%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %></dd>
-          <dd><span class="tags"><%= food.category.try(:name) %></span></dd>
-        </dl>
-      </td>
-      <td class="list_actions">
-        <%= link_to 'Show', food %><br>
-        <%= link_to 'Edit', edit_food_path(food) %><br>
-        <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
+        <%= link_to 'Show', order %>  
+        <%= link_to 'Edit', edit_order_path(order) %>  
+        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
   <% end %>
@@ -28,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Food', new_food_path %>
+<%= link_to 'New Food', new_order_path %>
