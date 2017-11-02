@@ -1,8 +1,8 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
-  include CurrentCart
-  before_action :set_cart
+  # include CurrentCart
+  # before_action :set_cart
 
   # GET /foods
   # GET /foods.json
@@ -52,6 +52,9 @@ class FoodsController < ApplicationController
       if @food.update(food_params)
         format.html { redirect_to @food, notice: 'Food was successfully updated.' }
         format.json { render :show, status: :ok, location: @food }
+
+        @foods = Food.order(:name)
+        ActionCable.server.broadcast 'foods', html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit }
         format.json { render json: @food.errors, status: :unprocessable_entity }

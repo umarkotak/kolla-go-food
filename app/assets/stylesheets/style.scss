@@ -31,11 +31,13 @@ body, body > p, body > ol, body > ul, body > td {margin: 5px !important}
     padding: 1em;
     background: white;
     flex: 1;
+    width: 100%;
   }
 
   #side {
     padding: 1em 0;
     background: #99ccff;
+    width: 235px;
 
     ul {
       padding: 0;
