@@ -1,28 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Foods</h1>
-
-<%=  %>
+<h1>Users</h1>
 
 <table>
-  <% @foods.each do |food| %>
+  <% @users.each do |user| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td>
-        <%= image_tag(food.image_url, class: 'list_image') %>
-      </td>
       <td class="list_description">
         <dl>
-          <dt><%= food.name %></dt>
-          <dd><%= truncate(strip_tags(food.description), length:80) %></dd>
-          <dd><%= number_to_currency(food.price, unit: "Rp ", delimiter: ".", separator: ",") %></dd>
-          <dd><span class="tags"><%= food.category.try(:name) %></span></dd>
+          <dt><%= user.name %></dt>
         </dl>
       </td>
       <td class="list_actions">
-        <%= link_to 'Show', food %><br>
-        <%= link_to 'Edit', edit_food_path(food) %><br>
-        <%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        <%= button_to 'Add to Cart', line_items_path(food_id: food) %>
+        <%= link_to 'Show', user %><br>
+        <%= link_to 'Edit', edit_user_path(user) %><br>
+        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+        <%= button_to 'Add to Cart', line_items_path(user_id: user) %>
       </td>
     </tr>
   <% end %>
@@ -30,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Food', new_food_path %>
+<%= link_to 'New User', new_user_path %>

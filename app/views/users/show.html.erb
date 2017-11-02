@@ -1,29 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @food.name %>
+  <strong>Username:</strong>
+  <%= @user.username %>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @food.description %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @food.category.try(:name) %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @food.image_url %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @food.price %>
-</p>
-
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
