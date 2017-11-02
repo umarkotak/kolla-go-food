@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe SessionsController do
+
+  describe "GET#{}new" do
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template :new
+    end
+  end
   
   describe "POST #create" do
     before :each do
@@ -28,11 +35,20 @@ describe SessionsController do
 
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE#destroy" do
     before :each do
       @user = create(:user)
     end
 
-    it "removes user_id from"
+    it "remove user_id from session " do
+      delete :destroy, params: {id:@user}
+      expect(session[:user_id]).to eq(nil)
+    end
+
+    it "redirect to home page" do
+      delete :destroy, params: {id: @user}
+      expect(response).to redirect_to store_index_path
+    end
+
   end
 end
