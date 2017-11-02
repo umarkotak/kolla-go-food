@@ -1,5 +1,6 @@
-<h1>New Food</h1>
-
-<%= render 'form', food: @food %>
-
-<%= link_to 'Back', foods_path %>
+<div class="go_food_form">
+  <fieldset>
+    <legend>Please enter your details</legend>
+    <%= render 'form', order: @order %>
+  </fieldset>
+</div>
