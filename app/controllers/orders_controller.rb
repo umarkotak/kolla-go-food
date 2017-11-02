@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:new]
+  before_action :set_cart, only: [:new, :create]
   before_action :check_cart, only: [:new]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
@@ -30,13 +30,20 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.add_line_items(@cart)
+    
+    # puts session[:cart_id]
+    # puts @cart.to_json
+    # puts @order.to_json
 
     respond_to do |format|
       if @order.save
         format.html { redirect_to store_index_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: store_index_path }
 
-        # Cart.destroy(session[:cart_id])
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
