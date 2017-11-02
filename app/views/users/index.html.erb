@@ -7,14 +7,13 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <td class="list_description">
         <dl>
-          <dt><%= user.name %></dt>
+          <dt><%= user.username %></dt>
         </dl>
       </td>
       <td class="list_actions">
-        <%= link_to 'Show', user %><br>
-        <%= link_to 'Edit', edit_user_path(user) %><br>
-        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        <%= button_to 'Add to Cart', line_items_path(user_id: user) %>
+        <%= link_to 'Show', user %>
+        <%= link_to 'Edit', edit_user_path(user) %>
+        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
   <% end %>
