@@ -21,7 +21,7 @@ describe User do
     user1 = create(:user, username: 'umar')
     user2 = build(:user, username: 'umar')
     user2.valid?
-    expect(user.errors[:username]).to include("has already been taken")
+    expect(user2.errors[:username]).to include("has already been taken")
   end
 
   context "on a new user" do
@@ -38,9 +38,9 @@ describe User do
     end
 
     it "is invalid with a confirmation missmatch" do
-      user = build(:user, password: '123456789', password_confirmation: '123456780')
+      user = build(:user, password: '123456789', password_confirmation: '1234567899')
       user.valid?
-      expect(user.errors[:password_confirmation]).to include("doesn't match password")
+      expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
   end
 
@@ -54,8 +54,7 @@ describe User do
     end
 
     it "is invalid with an empty password" do
-      @user.password = ''
-      @user.password_confirmation = ''
+      @user.password_digest = ''
       @user.valid?
       expect(@user.errors[:password]).to include("can't be blank")
     end
