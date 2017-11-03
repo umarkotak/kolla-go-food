@@ -1,6 +1,9 @@
 <p id='notice'><%= notice %></p>
 <h1>Your Food Catalog</h1>
 
+<%# Food.all.to_json %>
+<%# Category.all.to_json %>
+
 <% @foods.each do |food| %>
   <div class='entry'>
     <%= image_tag(food.image_url) %>

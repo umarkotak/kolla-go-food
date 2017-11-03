@@ -22,4 +22,16 @@ class Order < ApplicationRecord
       line_items << item
     end
   end
+
+  def total_price
+    total = 0
+    line_items.each do |item|
+      total += item.total_price
+    end
+    total
+  end
+
+  def total_price_reduce
+    
+  end
 end

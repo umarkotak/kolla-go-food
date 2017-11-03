@@ -93,6 +93,10 @@ selasa 24/10/2017
 3. buat db:migrate
 4. buat routes
 
+### Iteration 6 : ###
+1. rails generate model User username:string password:digest
+2. rails generate mailer Order receiver shipped
+
 ### Action Cable ###
 1. rails generate channel foods
 2. stream from foods
