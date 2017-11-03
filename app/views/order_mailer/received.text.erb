@@ -1,3 +1,7 @@
-Order#received
+Dear <% @order.name %>
 
-<%= @greeting %>, find me in app/views/order_mailer/received.text.erb
+Thank you for your recent Go Food Order, Your ordered folowing item:
+
+<%= render @order.line_items %>
+
+We'll Send you a separate email when your order ships.

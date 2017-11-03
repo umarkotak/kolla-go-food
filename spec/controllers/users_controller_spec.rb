@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe UsersController do
+
+  before :each do
+    user = create(:user)
+    session[:user_id] = user.id
+  end
+  
   describe 'GET #index' do
     context 'with params[:letter]' do
       it 'Populates an array of users starting with the letter' do
