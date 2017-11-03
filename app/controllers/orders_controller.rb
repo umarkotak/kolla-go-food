@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authorize, only: [:new, :create]
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :check_cart, only: [:new]
@@ -43,6 +44,10 @@ class OrdersController < ApplicationController
 
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
+
+        # OrderMailer.received(@order).deliver!
+        OrderMailer.received(@order).deliver_later
+
 
       else
         format.html { render :new }

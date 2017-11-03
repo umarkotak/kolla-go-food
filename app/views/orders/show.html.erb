@@ -1,29 +1,54 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @food.name %>
+  <strong>Order ID :</strong>
+  <%= @order.id %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @food.description %>
+  <strong>Name :</strong>
+  <%= @order.name %>
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @food.category.try(:name) %>
+  <strong>Address :</strong>
+  <%= @order.address %>
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @food.image_url %>
+  <strong>Email :</strong>
+  <%= @order.email %>
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @food.price %>
+  <strong>Payment type :</strong>
+  <%= @order.payment_type %>
 </p>
 
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+<% no = 1 %>
+<table border=1>
+  <tr>
+    <th>No.</th>
+    <th>Food Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+<% @order.line_items.each do |item| %>
+  <tr>
+    <td><%= no %></td>
+    <td><%= item.food.name %></td>
+    <td><%= item.food.price %></td>
+    <td><%= item.quantity %></td>
+    <td><%= item.total_price %></td>
+  </tr>
+<% no += 1 %>
+<% end %>
+  <tr>
+    <td colspan=4 align="right">Total</td>
+    <td><%= @order.total_price %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

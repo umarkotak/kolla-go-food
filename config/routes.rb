@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  
+    
+  get 'admin/index'
+  get 'admin' => 'admin#index'
+
+  # get 'sessions/new' => 'sessions#new'
+  # resources :sessions
+
+  controller :sessions do   #masuk ke session melalui login
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   resources :categories
   resources :drinks
   resources :orders
+  resources :users
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'

@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe OrdersController do
+
+  before :each do
+    user = create(:user)
+    session[:user_id] = user.id
+  end
+
   it "includes CurrentCart" do
     expect(OrdersController.ancestors.include? CurrentCart).to eq(true)
   end

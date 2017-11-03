@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
+  
+  before :each do
+    user = create(:user)
+    session[:user_id] = user.id
+  end
+
   describe 'GET #index' do
     it "populates an array of all categories" do 
       dessert = create(:category, name: "Dessert")
