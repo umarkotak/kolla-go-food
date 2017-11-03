@@ -121,3 +121,35 @@ git reset --soft HEAD^
 or
 git reset --soft HEAD~
 Use git status and git log frequently to observe your current state.
+
+### Production ###
+
+export port=3002
+
+port=3002 rails s
+untuk jalanin di port lain, cek config/puma.rb
+
+kill -9 proc_id
+
+ps aux | grep puma
+
+menyalakan aplikasi di mode daemon
+RAILS_ENV=production SECRET_KEY_BASE=abc puma -C config/puma.rb -d
+
+puma -C config/puma.rb
+
+RAILS_ENV=production rails db:migrate
+
+SECRET_KEY_BASE=abc
+
+RAILS_SERVE_STATIC_FILES=true karna belum ada apache ato puma
+
+rails assets:precompile
+
+sudo apt-get install nginx
+
+sudo service nginx start / restart / stop
+
+sudo rm default
+
+sudo ln -s /etc/nginx/sites_available/kolla_go_food /etc/nginx/sites-enabled/kolla_go_food
