@@ -9,4 +9,13 @@ FactoryGirl.define do
     unit 'percent'
     max_amount '20000'
   end
+
+  factory :invalid_voucher, parent: :voucher do
+    kode nil
+    valid_from nil
+    valid_through nil
+    amount nil
+    unit nil
+    max_amount nil
+  end
 end

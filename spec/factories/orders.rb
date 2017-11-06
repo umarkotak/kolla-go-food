@@ -5,6 +5,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     # payment_type { Faker::Number.between(0, 2) }
     payment_type "Cash"
+    association :voucher
   end
 
   factory :invalid_order, parent: :order do

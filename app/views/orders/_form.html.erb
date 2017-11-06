@@ -31,6 +31,18 @@
     <%= f.select :payment_type, Order.payment_types.keys, prompt: "Select a payment type" %>
   </div>
 
+  <div class="field">
+    <%= f.label :voucher %>
+    <% opt = [] %>
+    <% @vouchers_opt.each do |voucher| %>
+      <% dat = [] %>
+      <% dat << voucher.kode %>
+      <% dat << voucher.id.to_i %>
+      <% opt << dat %>
+    <% end %>
+    <%= select(:food, :category_id, options_for_select(opt), id: :food_category  ) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Place order" %>
   </div>

@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   resources :drinks
   resources :orders
   resources :users
+  resources :vouchers
+  resources :buyers
+  resources :foods
+  resources :line_items
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
@@ -30,9 +34,7 @@ Rails.application.routes.draw do
 
   # get 'store/index'
 
-  resources :buyers
-  resources :foods
-  resources :line_items
+  
 
 
 

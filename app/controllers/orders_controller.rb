@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @vouchers_opt = Voucher.all
     # respond_to()
   end
 
@@ -24,7 +25,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit    
-
+    @voucher_opt = Voucher.all
   end
 
   # POST /orders
