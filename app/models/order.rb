@@ -32,7 +32,22 @@ class Order < ApplicationRecord
     total
   end
 
-  def total_price_reduce
-    
+  def total_discount
+    total = 0
+    if voucher_id
+      if voucher.unit == 'percent'
+        total = total_price * voucher.amount / 100
+      elsif voucher.unit == 'rupiah'
+        total = voucher.amount
+      end      
+    end
+
+    total = voucher.max_amount if total > voucher.max_amount
+    total
+  end
+
+  def total_payment
+    total = total_price - total_discount
+    total < 0 ? total = 0 : total
   end
 end

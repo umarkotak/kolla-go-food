@@ -40,7 +40,7 @@
       <% dat << voucher.id.to_i %>
       <% opt << dat %>
     <% end %>
-    <%= select(:food, :category_id, options_for_select(opt), id: :food_category  ) %>
+    <%= select(:order, :voucher_id, options_for_select(opt), id: :order_voucher  ) %>
   </div>
 
   <div class="actions">
