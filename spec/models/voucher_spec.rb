@@ -43,6 +43,12 @@ RSpec.describe Voucher, type: :model do
       voucher.valid?
       expect(voucher.errors[:valid_through]).to include("must be greater than valid_from")
     end
+
+    it "is invalid with wrong date format" do
+      voucher = build(:voucher, valid_from: '2015-14-45')
+      voucher.valid?
+      expect(voucher.errors[:valid_from]).to include("must be in yyyy-mm-dd format")
+    end
   end
 
   it "can't be destroyed while it has order(s)" do
@@ -76,12 +82,12 @@ RSpec.describe Voucher, type: :model do
   context "unit calculation" do
     it "calculate percent" do
       voucher = build(:voucher, unit: 'percent')
-      expect(voucher.voucher_value).to eq('percent')
+      expect(voucher.unit).to eq('percent')
     end
 
     it "calculate rupiah" do
       voucher = build(:voucher, unit: 'rupiah')
-      expect(voucher.voucher_value).to eq('rupiah')
+      expect(voucher.unit).to eq('rupiah')
     end
   end
 

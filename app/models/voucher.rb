@@ -8,17 +8,27 @@ class Voucher < ApplicationRecord
   validates :kode, :valid_from, :valid_through, :amount, :unit, :max_amount, presence: true
   validates :amount, :max_amount, numericality: { greater_than: 0 }
   validates :max_amount, numericality: { greater_than_or_equal_to: :amount }
+  validates :valid_from, :valid_through, format: {
+    with: /[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/,
+    message: 'must be in yyyy-mm-dd format'
+  }
   validates :unit, inclusion: { in: %w(percent rupiah), message: "%{value} is not a valid unit" }
   validate :valid_through_must_be_greater_than_valid_from
 
-  def voucher_value
-    if self.unit == 'percent'
-      @unit = 'percent'
-    elsif self.unit == 'rupiah'
-      @unit = 'rupiah'
-    end
+  # def voucher_value
+  #   if self.unit == 'percent'
+  #     @unit = 'percent'
+  #   elsif self.unit == 'rupiah'
+  #     @unit = 'rupiah'
+  #   end
 
-    @unit
+  #   @unit
+  # end
+
+  validates_each :valid_from do |record, attr, value|
+    if !value.nil? && !record.valid_through.nil?
+      record.errors.add(attr, "valid_from must be less than valid_through") if value > record.valid_through
+    end
   end
 
   def ensure_kode_is_uppercase
