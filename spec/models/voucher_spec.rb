@@ -16,6 +16,14 @@ RSpec.describe Voucher, type: :model do
     expect(voucher.kode).to eq('PERCENTX')
   end
 
+  it "is invalid with duplicate code" do
+    voucher1 = create(:voucher, kode: 'percentx')
+    voucher2 = build(:voucher, kode: 'percentX')
+    voucher2.valid?
+
+    expect(voucher2.errors[:kode]).to include("has already been taken")
+  end
+
   context "valid_from and valid_through" do
 
     it "is invalid without valid_from attribute" do
@@ -30,20 +38,36 @@ RSpec.describe Voucher, type: :model do
       expect(voucher.errors[:valid_through]).to include("can't be blank")
     end
 
-    # it "is invalid without date format" do
-    #   voucher = build(:voucher, valid_from: '20-12-2017')
-    #   voucher.valid?
-    #   expect(voucher.errors[:valid_from]).to include
-    # end
+    it "is invalid if valid_through < valid_from" do
+      voucher = build(:voucher, valid_from: '2017-01-02', valid_through: '2017-01-01')
+      voucher.valid?
+      expect(voucher.errors[:valid_through]).to include("must be greater than valid_from")
+    end
+  end
+
+  it "can't be destroyed while it has order(s)" do
+    voucher = create(:voucher)
+    order = create(:order, voucher: voucher)
+
+    expect { voucher.destroy }.not_to change(Voucher, :count)
+  end
+
+  context "with unit value rupiah" do
+    it "is invalid with max_amount less than amount" do
+      voucher = build(:voucher, unit: 'rupiah', amount: 5000, max_amount: 3000)
+      voucher.valid?
+      # raise voucher.errors.to_json
+      expect(voucher.errors[:max_amount]).to include("must be greater than or equal to 5000.0")
+    end
   end
 
   it "is invalid with negative amount attribute" do
-    voucher = build(:voucher, amount: -5000)
+    voucher = build(:voucher, amount: 0)
     voucher.valid?
     expect(voucher.errors[:amount]).to include('must be greater than 0')
   end
 
-  it "is invalid without unit contain rupiah or percent" do
+  it "is invalid with wrong unit" do
     voucher = build(:voucher, unit: 'buah')
     voucher.valid?
     expect(voucher.errors[:unit]).to include('buah is not a valid unit')

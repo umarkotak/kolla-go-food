@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :voucher do
     kode 'PERCENTX'
     valid_from '2017-11-1'
-    valid_through '2017-11-25'
+    valid_through '2017-12-25'
     amount '15'
     unit 'percent'
     max_amount '20000'
