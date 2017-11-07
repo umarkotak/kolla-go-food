@@ -80,4 +80,28 @@ describe Order do
       }.to change(@cart.line_items, :count).by(-1)
     end
   end
+
+  describe "payment with voucher" do
+    before :each do
+      @food = create(:food, price: 10000)
+      @cart = create(:cart)      
+      @line_item = create(:line_item, quantity: 3, food: @food, cart: @cart)
+
+      @percentx = create(:voucher, kode: 'PERCENTXX', unit: 'percent', amount: 10, max_amount: 5000)
+      @rupiahx = create(:voucher, kode: 'RUPIAHXX', unit: 'rupiah', amount: 10000, max_amount: 10000)
+    end
+
+    it "will cut total amount with total discount" do
+      @order = build(:order, voucher_kode: 'PERCENTXX')
+      @order.voucher_id = @order.find_voucher
+      @order.add_line_items(@cart)
+
+      @order.save
+      # raise @line_item.to_json
+      
+      expect(@order.total_payment).to eq(27000)
+    end
+
+    it "will cut with max_amount if discount > max_amount"
+  end
 end

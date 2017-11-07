@@ -31,7 +31,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+
     @order = Order.new(order_params)
+    @order.voucher_id = @order.find_voucher.to_i
     @order.add_line_items(@cart)
     
     # puts session[:cart_id]
@@ -99,6 +101,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :payment_type, :voucher, :voucher_id)
+      params.require(:order).permit(:name, :address, :email, :payment_type, :voucher_kode, :voucher_id)
     end
 end
