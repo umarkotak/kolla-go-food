@@ -59,6 +59,14 @@
   </div>
 
   <div class="field">
+    <%= form.label :restaurant %>
+    <%= form.collection_select :restaurant_id, Restaurant.all, :id, :name do |category| %>
+      <%= category.id %>
+      <%= category.name %>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :image_url %>
     <%= form.text_field :image_url, id: :food_image_url %>
   </div>

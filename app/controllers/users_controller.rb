@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     # @users = User.all
     # @users = User.by_letter(params[:letter])
-    @users = params[:letter].nil? ? User.all : User.by_letter(params[:letter])
+    @users = User.all
   end
 
   # GET /users/1
