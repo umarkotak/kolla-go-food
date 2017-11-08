@@ -4,6 +4,7 @@ class Food < ApplicationRecord
   has_many :food_tags
   has_many :tags, through: :food_tags
   has_many :line_items
+  has_many :reviews, as: :reviewable
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

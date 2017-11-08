@@ -1,5 +1,6 @@
 class Restaurant < ApplicationRecord
   has_many :foods
+  has_many :reviews, as: :reviewable
 
   before_destroy :ensure_not_referenced_by_any_food
 
