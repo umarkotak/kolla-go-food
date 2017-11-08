@@ -29,6 +29,14 @@ RSpec.describe TagsController, type: :controller do
     end
 
     it "populates a list of all foods in the tag" do
+      tag = create(:tag)
+      food1 = create(:food, name: 'nasi')
+      food2 = create(:food, name: 'uduk')
+      food_tag = create(:food_tag, food: food1, tag: tag)
+      food_tag = create(:food_tag, food: food2, tag: tag)
+
+      # raise tag.foods.to_json
+      expect(tag.foods).to eq([food1, food2])
     end
 
     it "renders the :show template" do
