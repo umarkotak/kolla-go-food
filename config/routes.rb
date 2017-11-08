@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :foods
   resources :line_items
   resources :tags
+  resources :restaurants
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
