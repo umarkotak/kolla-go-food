@@ -1,34 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Kode:</strong>
-  <%= @voucher.kode %>
+  <strong>Name:</strong>
+  <%= @category.name %>
 </p>
 
 <p>
-  <strong>Valid From:</strong>
-  <%= @voucher.valid_from %>
+  <strong>Foods:</strong>
+  <% @category.foods.each do |food| %>
+    <%= food.name %>
+  <% end %>
 </p>
 
-<p>
-  <strong>Valid Through:</strong>
-  <%= @voucher.valid_through %>
-</p>
 
-<p>
-  <strong>Unit:</strong>
-  <%= @voucher.unit %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @voucher.amount %>
-</p>
-
-<p>
-  <strong>Max Amount:</strong>
-  <%= @voucher.max_amount %>
-</p>
-
-<%= link_to 'Edit', edit_voucher_path(@voucher) %> |
-<%= link_to 'Back', vouchers_path %>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>

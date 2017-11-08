@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :buyers
   resources :foods
   resources :line_items
+  resources :tags
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
@@ -34,13 +35,8 @@ Rails.application.routes.draw do
 
   # get 'store/index'
 
-  
-
-
-
   get 'home/hello'
   get 'home/goodbye'
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
