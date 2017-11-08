@@ -33,7 +33,8 @@ class OrdersController < ApplicationController
   def create
 
     @order = Order.new(order_params)
-    @order.voucher_id = @order.find_voucher.to_i
+    # @order.voucher_id = @order.find_voucher.to_i
+    @order.voucher = Voucher.find_by(kode: params[:voucher_kodex])
     @order.add_line_items(@cart)
     
     # puts session[:cart_id]

@@ -158,3 +158,6 @@ sudo ln -s /etc/nginx/sites_available/kolla_go_food /etc/nginx/sites-enabled/kol
 
 ### ================================== ###
 
+### ASSOCIATION MATERIAL ###
+
+has_many :book, 
