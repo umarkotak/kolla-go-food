@@ -1,20 +1,21 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :load_reviewable
 
   def index
     @reviews = Review.all
   end
 
   def new
-    if params[:food_id].present?
-      @reviewable_type = 'Food'
-      @reviewable_id = params[:food_id]
-    elsif params[:restaurant_id].present?
-      @reviewable_type = 'Restaurant'
-      @reviewable_id = params[:restaurant_id]
-    end
+    # if params[:food_id].present?
+    #   @reviewable_type = 'Food'
+    #   @reviewable_id = params[:food_id]
+    # elsif params[:restaurant_id].present?
+    #   @reviewable_type = 'Restaurant'
+    #   @reviewable_id = params[:restaurant_id]
+    # end
 
-    @review = Review.new
+    @review = @reviewable.reviews.new
   end
 
   # GET /reviews/1
@@ -33,6 +34,7 @@ class ReviewsController < ApplicationController
   def create
 
     @review = Review.new(review_params)
+    @review.reviewable = @reviewable
 
     respond_to do |format|
       if @review.save
@@ -40,8 +42,8 @@ class ReviewsController < ApplicationController
         format.json { render :show, status: :created, location: store_index_path }
       else        
         # format.html { redirect_to "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
-        format.html { redirect_back fallback_location: "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
-        # format.html { render :new }
+        # format.html { redirect_back fallback_location: "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
+        format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +59,6 @@ class ReviewsController < ApplicationController
         format.json { render :show, status: :ok, location: @review }
 
         @reviews = Review.review(:name)
-        ActionCable.server.broadcast 'reviews', html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit }
         format.json { render json: @review.errors, status: :unprocessable_entity }
@@ -81,14 +82,14 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    def check_cart
-      if @cart.line_items.empty?
-        redirect_to store_index_path
-      end
+    def load_reviewable
+      klass = [Food, Restaurant].detect { |c| params["#{c.name.underscore}_id"] }
+      @reviewable = klass.find{params["#{klass.name.underscore}_id"]} 
+      # akan return obj food/ restaurant sesuai dengan id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:name, :title, :description, :reviewable_id, :reviewable_type)
+      params.require(:review).permit(:name, :title, :description)
     end
 end
