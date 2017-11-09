@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :line_items
   resources :tags
   resources :restaurants
+  resources :reviews
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'
@@ -30,6 +31,17 @@ Rails.application.routes.draw do
   # patch '/drinks/:id' => 'drinks#update'
   # delete 'drinks/:id' => 'drinks#destroy'
   # delete 'drinks/:id/hapus' => 'drinks#hapus'
+
+  get '/foods/:food_id/reviews/new' => 'reviews#new'#, as: 'new_food_review'
+  get '/restaurants/:restaurant_id/reviews/new' => 'reviews#new'
+
+  resources :foods do
+    resources :reviews
+  end
+
+  # resources :restaurants do
+  #   resources :reviews
+  # end
 
   resources :carts
   root 'store#index', as: 'store_index'

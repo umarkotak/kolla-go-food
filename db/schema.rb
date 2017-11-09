@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108063530) do
+ActiveRecord::Schema.define(version: 20171108100302) do
 
   create_table "buyers", force: :cascade do |t|
     t.string "name"
@@ -88,6 +88,17 @@ ActiveRecord::Schema.define(version: 20171108063530) do
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.text "description"
+    t.string "reviewable_type"
+    t.integer "reviewable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
   end
 
   create_table "tags", force: :cascade do |t|
