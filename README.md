@@ -122,6 +122,8 @@ or
 git reset --soft HEAD~
 Use git status and git log frequently to observe your current state.
 
+git push -d origin exercise
+
 ### Production ###
 
 export port=3002
@@ -153,3 +155,9 @@ sudo service nginx start / restart / stop
 sudo rm default
 
 sudo ln -s /etc/nginx/sites_available/kolla_go_food /etc/nginx/sites-enabled/kolla_go_food
+
+### ================================== ###
+
+### ASSOCIATION MATERIAL ###
+
+has_many :book, 

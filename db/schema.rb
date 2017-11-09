@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102065420) do
+ActiveRecord::Schema.define(version: 20171108063530) do
 
   create_table "buyers", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20171102065420) do
     t.integer "category_id"
   end
 
+  create_table "food_tags", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_id"], name: "index_food_tags_on_food_id"
+    t.index ["tag_id"], name: "index_food_tags_on_tag_id"
+  end
+
   create_table "foods", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -51,6 +60,7 @@ ActiveRecord::Schema.define(version: 20171102065420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.integer "restaurant_id"
   end
 
   create_table "line_items", force: :cascade do |t|
@@ -70,11 +80,36 @@ ActiveRecord::Schema.define(version: 20171102065420) do
     t.integer "payment_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "voucher_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vouchers", force: :cascade do |t|
+    t.string "kode"
+    t.date "valid_from"
+    t.date "valid_through"
+    t.string "unit"
+    t.float "amount"
+    t.float "max_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

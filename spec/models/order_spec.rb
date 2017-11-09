@@ -80,4 +80,82 @@ describe Order do
       }.to change(@cart.line_items, :count).by(-1)
     end
   end
+
+  describe "payment with voucher" do
+    before :each do
+      @food = create(:food, price: 10000)
+      @cart = create(:cart)      
+      @line_item = create(:line_item, quantity: 3, food: @food, cart: @cart)
+
+      @percentx = create(:voucher, kode: 'PERCENTXX', unit: 'percent', amount: 10, max_amount: 5000)
+      @rupiahx = create(:voucher, kode: 'RUPIAHXX', unit: 'rupiah', amount: 10000, max_amount: 10000)
+    end
+
+    it "will return voucher id after inputing voucher_kode" do
+      order = build(:order, voucher_kode: 'PERCENTXX')
+      expect(order.find_voucher).to eq(1)
+    end
+
+    it "will return total discount with percent" do
+      order = build(:order, voucher_kode: 'PERCENTXX')
+      order.voucher_id = order.find_voucher
+      order.add_line_items(@cart)
+
+      order.save
+      expect(order.total_discount).to eq(3000)
+    end
+
+    it "will return total discount with rupiah" do
+      order = build(:order, voucher_kode: 'RUPIAHXX')
+      order.voucher_id = order.find_voucher
+      order.add_line_items(@cart)
+
+      order.save
+      expect(order.total_discount).to eq(10000)
+    end
+
+    it "will return 0 discount with invalid voucher" do
+      order = build(:order, voucher_kode: 'ASALAJA')
+      order.voucher_id = order.find_voucher
+      order.add_line_items(@cart)
+
+      order.save
+      expect(order.total_discount).to eq(0)
+    end
+
+    it "will cut total amount with total discount percent" do
+      order = build(:order, voucher_kode: 'PERCENTXX')
+      order.voucher_id = order.find_voucher
+      order.add_line_items(@cart)
+
+      order.save
+      # raise @line_item.to_json
+      
+      expect(order.total_payment).to eq(27000)
+    end
+
+    it "will cut total amount with total discount rupiah" do
+      order = build(:order, voucher_kode: 'RUPIAHXX')
+      order.voucher_id = order.find_voucher
+      order.add_line_items(@cart)
+
+      order.save
+      # raise @line_item.to_json
+      
+      expect(order.total_payment).to eq(20000)
+    end
+
+    it "will cut with max_amount if discount > max_amount" do
+      cart = create(:cart)      
+      line_item = create(:line_item, quantity: 10, food: @food, cart: cart)      
+
+      order = build(:order, voucher_kode: 'PERCENTXX')
+       
+      order.voucher_id = order.find_voucher
+      order.add_line_items(cart)
+      order.save
+
+       expect(order.total_payment).to eq(95000)
+    end
+  end
 end

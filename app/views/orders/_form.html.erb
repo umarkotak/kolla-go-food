@@ -31,6 +31,28 @@
     <%= f.select :payment_type, Order.payment_types.keys, prompt: "Select a payment type" %>
   </div>
 
+  <!-- <div class="field"> -->
+    <%# f.label :voucher %>
+    <%# opt = [] %>
+    <%# @vouchers_opt.each do |voucher| %>
+      <%# dat = [] %>
+      <%# dat << voucher.kode %>
+      <%# dat << voucher.id.to_i %>
+      <%# opt << dat %>
+    <%# end %>
+    <%# select(:order, :voucher_id, options_for_select(opt), id: :order_voucher  ) %>
+  <!-- </div> -->
+
+  <!-- <div class="field">
+    <%# f.label :voucher %>
+    <%# f.text_field :voucher_kode, size: 40 %>
+  </div> -->
+
+  <div class="field">
+    <%= f.label :voucher %>
+    <%= text_field_tag :voucher_kodex %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Place order" %>
   </div>

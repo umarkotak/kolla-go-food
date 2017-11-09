@@ -1,5 +1,9 @@
 class Order < ApplicationRecord
+
+  attr_accessor :voucher_kode
+
   has_many :line_items, dependent: :destroy
+  belongs_to :voucher, optional: true
 
   enum payment_type: {
     "Cash" => 0,
@@ -31,7 +35,27 @@ class Order < ApplicationRecord
     total
   end
 
-  def total_price_reduce
-    
+  def total_discount
+    total = 0
+    if voucher.nil? == false
+      if voucher.unit == 'percent'
+        total = total_price * voucher.amount / 100
+      elsif voucher.unit == 'rupiah'
+        total = voucher.amount
+      end      
+
+      total = voucher.max_amount if total > voucher.max_amount
+    end    
+    total
+  end
+
+  def total_payment
+    total = total_price - total_discount
+    total < 0 ? total = 0 : total
+  end
+
+  def find_voucher
+    voucher_id = Voucher.find_by(kode: voucher_kode)
+    voucher_id.nil? ? nil : voucher_id.id
   end
 end

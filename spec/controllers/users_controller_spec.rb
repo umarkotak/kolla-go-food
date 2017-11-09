@@ -3,17 +3,19 @@ require 'rails_helper'
 describe UsersController do
 
   before :each do
-    user = create(:user)
+    user = create(:user, username: 'jono')
     session[:user_id] = user.id
   end
   
   describe 'GET #index' do
-    context 'with params[:letter]' do
+    context 'populate all user' do
       it 'Populates an array of users starting with the letter' do
-        user1 = create(:user, username: 'Nasi Uduk')
-        user2 = create(:user, username: 'Kerak Telor')
+        user = User.find_by(id: 1)
+        user1 = create(:user, username: 'koplak')
+        user2 = create(:user, username: 'kapluk')
         get :index
-        expect(assigns(:users)).to match_array([user1, user2])
+        # raise User.all.to_json
+        expect(assigns(:users)).to match_array([user, user1, user2])
       end
       it 'Renders the :index template' do
         get :index

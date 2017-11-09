@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @vouchers_opt = Voucher.all
     # respond_to()
   end
 
@@ -24,13 +25,16 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit    
-
+    @voucher_opt = Voucher.all
   end
 
   # POST /orders
   # POST /orders.json
   def create
+
     @order = Order.new(order_params)
+    # @order.voucher_id = @order.find_voucher.to_i
+    @order.voucher = Voucher.find_by(kode: params[:voucher_kodex])
     @order.add_line_items(@cart)
     
     # puts session[:cart_id]
@@ -98,6 +102,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :payment_type)
+      params.require(:order).permit(:name, :address, :email, :payment_type, :voucher_kode, :voucher_id)
     end
 end

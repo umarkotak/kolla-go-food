@@ -2,7 +2,7 @@
 
 <h1>Foods</h1>
 
-<%# @orders.to_json %>
+<%= @orders.to_json %>
 <%# @orders[1].to_json %>
 <%# @orders[1].line_items.to_json %>
 <%# LineItem.all.to_json %>
@@ -15,6 +15,10 @@
     <th>E Mail</th>
     <th>Payment Type</th>
     <th>Total</th>
+    <th>Voucher</th>
+    <th>Unit</th>
+    <th>Discount</th>
+    <th>Total Bayar</th>
     <th>Action</th>
   </tr>
   <% @orders.each do |order| %>
@@ -24,7 +28,11 @@
       <td><%= order.address %></td>
       <td><%= order.email %></td>
       <td><%= order.payment_type %></td>
-      <td><%= order.total_price %></td>
+      <td><%= order.total_price %></td>    
+      <td><%= order.voucher.try(:kode) %></td>
+      <td><%= order.voucher.try(:unit) %></td>
+      <td><%= order.voucher.try(:amount) %></td>
+      <td><%= order.total_payment %></td>
       <td>
         <%= link_to 'Show', order %>  
         <%= link_to 'Edit', edit_order_path(order) %>  

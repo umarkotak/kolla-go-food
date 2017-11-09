@@ -1,7 +1,7 @@
-Dear <% @order.name %>
+Dear <%= @order.name %>
 
-Thank you for your recent Go Food Order, Your ordered folowing item:
+Thank you for your recent Go Food order. You ordered the following items:
 
-<%= render @order.line_item %>
+<%= render @order.line_items %>
 
-We'll Send you a separate email when your order ships.
+We'll send you a separate e-mail when your order ships.

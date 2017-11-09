@@ -30,8 +30,8 @@ RSpec.describe CategoriesController, type: :controller do
 
     it "populates a list of all foods in the category" do
       category = create(:category)
-      food1 = create(:food, category: category)
-      food2 = create(:food, category: category)
+      food1 = create(:food, name: 'Nasi Uduk', category: category)
+      food2 = create(:food, name: 'Nasi Kuning', category: category)
       get :show, params: { id: category }
       expect(assigns(:category).foods).to match_array([food1, food2])
     end
