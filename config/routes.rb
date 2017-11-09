@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # delete 'drinks/:id' => 'drinks#destroy'
   # delete 'drinks/:id/hapus' => 'drinks#hapus'
 
-  get '/foods/:food_id/reviews/new' => 'reviews#new'
+  get '/foods/:food_id/reviews/new' => 'reviews#new'#, as: 'new_food_review'
   get '/restaurants/:restaurant_id/reviews/new' => 'reviews#new'
 
   resources :foods do

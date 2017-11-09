@@ -39,7 +39,8 @@ class ReviewsController < ApplicationController
         format.html { redirect_to store_index_path, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: store_index_path }
       else        
-        format.html { redirect_to "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
+        # format.html { redirect_to "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
+        format.html { redirect_back fallback_location: "/#{@review.reviewable_type.underscore}s/#{@review.reviewable_id}/reviews/new" }
         # format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
