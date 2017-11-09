@@ -5,12 +5,17 @@
 <%# Category.all.to_json %>
 
 <% Restaurant.all.each do |restaurant| %>
-  <h2 style="background: yellow; padding: 10px 5px; margin-top: 0px"><%= restaurant.name %></h2>
+  <div style="background: yellow; padding: 10px 5px; margin-top: 0px">
+    <h2><%= link_to restaurant.name, restaurant %></h2>
+    <%# link_to 'Write Review', new_restaurant_review_path(restaurant_id: restaurant) %>
+    <%= link_to 'Write Review', "/restaurants/#{restaurant.id}/reviews/new" %>
+  </div>    
 
   <% restaurant.foods.each do |food| %>
     <div class='entry'>
       <%= image_tag(food.image_url) %>
-      <h3><%= food.name %></h3>
+      <h3><%= link_to food.name, food %></h3>
+      <p><%= link_to 'Write Review', "foods/#{food.id}/reviews/new" %></p>
       <p><%= sanitize(food.description) %></p>
       <div class='price_line'>
         <span class="price">

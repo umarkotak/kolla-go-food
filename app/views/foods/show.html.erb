@@ -30,5 +30,23 @@
   <%= @food.restaurant.try(:name) %>
 </p>
 
+<p>
+  <strong>Review:</strong>
+  <table border=1>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+    <% @food.reviews.each do |reviewable| %>
+      <tr>
+        <td><%= reviewable.name %></td>
+        <td><%= reviewable.title %></td>
+        <td><%= reviewable.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
 <%= link_to 'Edit', edit_food_path(@food) %> |
 <%= link_to 'Back', foods_path %>
