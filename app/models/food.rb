@@ -24,6 +24,10 @@ class Food < ApplicationRecord
     where("category_id = ?", category_id)
   end
 
+  def self.search(search)
+    
+  end
+
   private
 
   def ensure_not_referenced_by_any_line_item
