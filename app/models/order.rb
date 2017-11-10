@@ -58,4 +58,9 @@ class Order < ApplicationRecord
     voucher_id = Voucher.find_by(kode: voucher_kode)
     voucher_id.nil? ? nil : voucher_id.id
   end
+
+  def self.search(name, address, email, minimum_price, maximum_price)
+    foods = Food.where("name LIKE ? AND description LIKE ? AND price >= ? AND price <= ?", "%#{name}%", "%#{description}%", minimum_price, maximum_price).order(:name)
+    foods
+  end
 end

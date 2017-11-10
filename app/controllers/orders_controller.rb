@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
     # @order.voucher_id = @order.find_voucher.to_i
     @order.voucher = Voucher.find_by(kode: params[:voucher_kodex])
     @order.add_line_items(@cart)
+    @order.total = @order.total_payment
     
     # puts session[:cart_id]
     # puts @cart.to_json

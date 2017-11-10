@@ -1,8 +1,75 @@
 <h1>Admin Index</h1>
 
-<%= form_tag foods_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
+<div style="display: block;">
+  <table>
+    <tr valign="top">
+      <td>
+        <div>
+          <h4>Seach Food</h5>
+          <%= form_tag admin_path, :method => 'get' do %>
+            <div>
+              <label>name :</label>
+              <%= text_field_tag :name, params[:name] %>
+            </div>
+            <div>
+              <label>description :</label>
+              <%= text_field_tag :description, params[:description] %>
+            </div>
+            <div>
+              <label>minimum price :</label>
+              <%= text_field_tag :minimum_price, params[:minimum_price] %>
+            </div>
+            <div>
+              <label>maximum price :</label>
+              <%= text_field_tag :maximum_price, params[:maximum_price] %>
+            </div>
+            <br>
+            <%= button_tag "Search", :name => 'submit', :value => 'food' %>    
+          <% end %>
+        </div>
+      </td>
+
+      <td>
+        <div>
+          <h4>Seach Order</h5>
+          <%= form_tag admin_path, :method => 'get' do %>
+            <div>
+              <label>name :</label>
+              <%= text_field_tag :name, params[:name] %>
+            </div>
+            <div>
+              <label>address :</label>
+              <%= text_field_tag :address, params[:address] %>
+            </div>
+            <div>
+              <label>email :</label>
+              <%= text_field_tag :email, params[:email] %>
+            </div>
+            <div>
+              <label>minimum total price :</label>
+              <%= text_field_tag :minimum_total_price, params[:minimum_total_price] %>
+            </div>
+            <div>
+              <label>maximum total price :</label>
+              <%= text_field_tag :maximum_total_price, params[:maximum_total_price] %>
+            </div>
+            <br>
+            <%= button_tag "Search", :name => 'submit', :value => 'order' %>    
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<%# params.to_json %>
+<div style="display: block;">
+  <%= @foods.to_sql if @foods.present? %>
+  <%= @foods.to_json if @foods.present? %>
+</div>
+
+<div style="display: block;">
+  <%= @orders.to_sql if @orders.present? %>
+  <%= @orders.to_json if @orders.present? %>
+</div>
