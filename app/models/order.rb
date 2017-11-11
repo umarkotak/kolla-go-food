@@ -58,4 +58,14 @@ class Order < ApplicationRecord
     voucher_id = Voucher.find_by(kode: voucher_kode)
     voucher_id.nil? ? nil : voucher_id.id
   end
+
+  def self.search(name, address, email, payment_type, minimum_total_price, maximum_total_price)
+    # orders = Order.where("name LIKE ? AND address LIKE ? AND email LIKE ? AND payment_type LIKE ? AND total >= ? AND total <= ?", "%#{name}%", "%#{address}%", "%#{email}%", "%#{payment_type}%", minimum_total_price, maximum_total_price).order(:name)
+
+
+
+    orders = Order.where("name LIKE ?", "%#{name}%").where("address LIKE ?", "%#{address}%").where("email LIKE ?", "%#{email}%").where("total >= ?", minimum_total_price).where("total <= ?", maximum_total_price).order(:name)
+    orders = orders.where("payment_type = ?", "#{payment_type}") if payment_type != ''
+    orders
+  end
 end

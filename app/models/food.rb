@@ -24,6 +24,11 @@ class Food < ApplicationRecord
     where("category_id = ?", category_id)
   end
 
+  def self.search(name, description, minimum_price, maximum_price)
+    foods = Food.where("name LIKE ? AND description LIKE ? AND price >= ? AND price <= ?", "%#{name}%", "%#{description}%", minimum_price, maximum_price).order(:name)
+    foods
+  end
+
   private
 
   def ensure_not_referenced_by_any_line_item

@@ -5,19 +5,37 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Food.delete_all
-Category.delete_all
 
-Category.create!(
-  name: 'Mahal'
+User.create!(
+  username: 'umarkotak',
+  password: 'umarkotak'
 )
 
 Category.create!(
-  name: 'Sedang'
+  name: 'Seafood'
 )
 
 Category.create!(
-  name: 'Murah'
+  name: 'Meat'
+)
+
+Category.create!(
+  name: 'Epic Food'
+)
+
+Restaurant.create!(
+  name: 'Waroenk Kito',
+  address: 'Jalan ruko semanan no. 45'
+)
+
+Restaurant.create!(
+  name: 'KFC',
+  address: 'Jalan air mancur, bogor'
+)
+
+Restaurant.create!(
+  name: 'Warung Mbok Galak',
+  address: 'Jalan daan mogot'
 )
 
 Food.create!(
@@ -28,6 +46,7 @@ Food.create!(
   </p>},
   image_url: 'Image1.jpg',
   category_id: 1,
+  restaurant_id: 2,
   price: 9000
 )
 
@@ -39,6 +58,7 @@ Food.create!(
   </p>},
   image_url: 'Image2.jpg',
   category_id: 2,
+  restaurant_id: 1,
   price: 15000
 )
 
@@ -51,6 +71,7 @@ Food.create!(
   </p>},
   image_url: 'Image3.jpg',
   category_id: 3,
+  restaurant_id: 1,
   price: 20000
 )
 
