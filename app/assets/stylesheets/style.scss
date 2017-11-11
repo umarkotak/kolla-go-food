@@ -3,7 +3,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 5px !important}
 #banner {
   position: relative;
   min-height: 40px;
-  background: white;
+  background: #005c99;
   padding: 10px;
   border-bottom: 2px solid;
   font: small-caps 40px/40px "Times New Roman", serif;
@@ -15,7 +15,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 5px !important}
     top: 0;
     left: 0;
     height: 60px;
-    width: 192px;
+    width: 235px;
   }
 }
 
@@ -35,7 +35,7 @@ body, body > p, body > ol, body > ul, body > td {margin: 5px !important}
   }
 
   #side {
-    padding: 1em 0;
+    padding: 0;
     background: #99ccff;
     width: 235px;
 
