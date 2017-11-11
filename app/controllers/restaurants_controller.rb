@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    # @foods = Food.by_restaurant(@restaurant.id)
+    @foods = @restaurant.foods
   end
 
   # GET /restaurants/new
