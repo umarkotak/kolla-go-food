@@ -14,7 +14,7 @@
       <span class="title"><%= @page_title %></span>
     </div>
     <div id="columns">
-      <div id="side" style="width: 150px;">
+      <div id="side">
         <% if session[:user_id] %>
           <ul>
             <li><%= link_to 'Orders', orders_path %></li>
