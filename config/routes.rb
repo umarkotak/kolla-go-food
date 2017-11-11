@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :restaurants
   resources :reviews
+  resources :dashboard
   # get '/drinks' => 'drinks#index'
   # get '/drinks/:id' => 'drinks#show'
   # get '/drinks/new' => 'drinks#new'

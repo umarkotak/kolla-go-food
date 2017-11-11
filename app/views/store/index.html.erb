@@ -25,12 +25,12 @@
       </div>
       <div class="tags_line">
         Category : 
-        <span class="tags-strip"><%= food.category.try(:name) %></span>
+        <span class="tags-strip"><a href="/categories/<%= food.category.try(:id) %>"><%= food.category.try(:name) %></a></span>
       </div>
       <div class="tags_line">
         Tag : 
         <% food.tags.each do |tag| %>
-          <span class="tags-strip"><%= tag.name %></span>
+          <span class="tags-strip"><a href="/tags/<%= tag.id %>"><%= tag.name %></a></span>
         <% end %>
       </div>
     </div>
