@@ -1,9 +1,11 @@
 <div>
   <h4>1. The number of order every date</h4>
+  <%= line_chart @number_of_order_every_date %>
 </div>
 
 <div>
   <h4>2. The total price of order every date</h4>
+  <%= line_chart @total_price_of_order_every_date %>
 </div>
 
 <div>
@@ -21,6 +23,3 @@
 <div>
   <h4>5. The total price of order from each restaurant</h4>
 </div>
-
-
-<%= line_chart @foods.group(:category_id).count %>
