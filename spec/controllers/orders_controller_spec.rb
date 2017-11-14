@@ -71,19 +71,19 @@ describe OrdersController do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested order to @order" do
-      order = create(:order)
-      get :edit, params: {id: order}
-      expect(assigns(:order)).to eq order
-    end
+  # describe "GET #edit" do
+  #   it "assigns the requested order to @order" do
+  #     order = create(:order)
+  #     get :edit, params: {id: order}
+  #     expect(assigns(:order)).to eq order
+  #   end
 
-    it "renders the :edit template" do
-      order = create(:order)
-      get :edit, params: { id: order }
-      expect(response).to render_template :edit
-    end
-  end
+  #   it "renders the :edit template" do
+  #     order = create(:order)
+  #     get :edit, params: { id: order }
+  #     expect(response).to render_template :edit
+  #   end
+  # end
 
   describe "POST #create" do
     context "with valid attributes" do
@@ -146,6 +146,14 @@ describe OrdersController do
         expect(@order.name).to eq('umar')
       end
 
+      it "changes @order's attributes" do
+        post :update, params: { id: @order, order: attributes_for(:order, name: 'umar') }
+
+        @order.reload
+        raise @order.to_json
+        expect(@order.name).to eq('umar')
+      end
+
       it "redirects to the order" do
         post :update, params: { id: @order, order: attributes_for(:order) }
         expect(response).to redirect_to @order
@@ -158,10 +166,10 @@ describe OrdersController do
         expect(assigns(:order)).not_to eq('umar')
       end
 
-      it "re renders the :edit template" do
-        patch :update, params: { id: @order, order: attributes_for(:invalid_order) }
-        expect(response).to render_template :edit
-      end
+      # it "re renders the :edit template" do
+      #   patch :update, params: { id: @order, order: attributes_for(:invalid_order) }
+      #   expect(response).to render_template :edit
+      # end
     end
   end
 

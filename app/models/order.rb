@@ -2,6 +2,8 @@ class Order < ApplicationRecord
 
   attr_accessor :voucher_kode
 
+  # validates :voucher_kode
+
   has_many :line_items, dependent: :destroy
   belongs_to :voucher, optional: true
 
@@ -55,7 +57,7 @@ class Order < ApplicationRecord
   end
 
   def find_voucher
-    voucher_id = Voucher.find_by(kode: voucher_kode)
+    voucher_id = Voucher.find_by(kode: @voucher_kode)
     voucher_id.nil? ? nil : voucher_id.id
   end
 

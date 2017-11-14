@@ -36,8 +36,7 @@
       <td><%= order.voucher.try(:amount) %></td>
       <td><%= order.total_payment %></td>
       <td>
-        <%= link_to 'Show', order %>  
-        <%= link_to 'Edit', edit_order_path(order) %>  
+        <%= link_to 'Show', order %>   
         <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
