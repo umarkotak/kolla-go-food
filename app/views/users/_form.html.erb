@@ -1,10 +1,10 @@
-<%= form_with(model: user, local: true) do |f| %>
-  <% if user.errors.any? %>
+<%= form_with(model: @user, local: true) do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -32,5 +32,18 @@
     <div class="actions">
       <%= f.submit %>
     </div>
+
+    <div class="field">
+      <%= f.label :role %>
+      <table>
+        <%= f.collection_check_boxes :role_ids, Role.all, :id, :name do |tag| %>   
+          <tr>
+            <td><%= tag.label %></td>
+            <td><%= tag.check_box %></td>
+          </tr>        
+        <% end %>
+      </table>
+    </div>
+
   </fieldset>
 <% end %>
