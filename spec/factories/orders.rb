@@ -6,6 +6,7 @@ FactoryGirl.define do
     # payment_type { Faker::Number.between(0, 2) }
     payment_type "Cash"
     association :voucher
+    total 0
   end
 
   factory :invalid_order, parent: :order do

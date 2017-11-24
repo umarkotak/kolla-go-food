@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 describe OrdersController do
 
@@ -150,7 +150,7 @@ describe OrdersController do
         post :update, params: { id: @order, order: attributes_for(:order, name: 'umar') }
 
         @order.reload
-        raise @order.to_json
+        # raise @order.to_json
         expect(@order.name).to eq('umar')
       end
 
