@@ -30,6 +30,7 @@ gem 'jquery-ui-rails'
 gem 'chartkick'
 gem 'serializer'
 gem 'active_model_serializers'
+gem 'rspec_junit_formatter'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
