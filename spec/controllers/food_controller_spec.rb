@@ -11,7 +11,7 @@ describe FoodsController do
     context 'with params[:letter]' do
       it 'Populates an array of foods starting with the letter' do
         nasi_uduk = create(:food, name: 'Nasi Uduk')
-        kerak_telor = create(:food, name: 'Kerak Telor')
+        kerak_telor = create(:food, name: 'Kerak Telors')
         get :index, params: {letter: 'N'}
         expect(assigns(:foods)).to match_array([nasi_uduk])
       end

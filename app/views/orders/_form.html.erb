@@ -43,15 +43,15 @@
     <%# select(:order, :voucher_id, options_for_select(opt), id: :order_voucher  ) %>
   <!-- </div> -->
 
-  <!-- <div class="field">
-    <%# f.label :voucher %>
-    <%# f.text_field :voucher_kode, size: 40 %>
-  </div> -->
-
   <div class="field">
     <%= f.label :voucher %>
-    <%= text_field_tag :voucher_kodex %>
+    <%= f.text_field :voucher_kode, size: 40 %>
   </div>
+
+  <!-- <div class="field">
+    <%# f.label :voucher %>
+    <%# text_field_tag :voucher_kodex %>
+  </div> -->
 
   <div class="actions">
     <%= f.submit "Place order" %>
